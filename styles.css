@@ -1,0 +1,13 @@
+.buttonContainer > div > button {
+   margin: 3px;
+   aspect-ratio: 1;
+   width: 100%;
+}
+
+.buttonContainer {
+   width: 220px;
+}
+
+.buttonContainer > div {
+   display: flex;
+}
