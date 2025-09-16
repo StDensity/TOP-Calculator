@@ -44,7 +44,7 @@ const handleSpecialButtons = (button) => {
       num2 = 0;
       operator = null;
       disableFloatButton(false);
-      setDisplayValue("Hello");
+      setDisplayValue(num1);
    } else if (button === "=") {
       operate(num1, num2, operator);
       operator = null;
@@ -58,6 +58,36 @@ const handleSpecialButtons = (button) => {
          num2 = num2.toString() + ".";
          setDisplayValue(num2);
          disableFloatButton(true);
+      }
+   } else if (button === "backSpace") {
+      if (operator === null) {
+         num1 = num1.toString();
+         if (
+            num1.slice(-1) === "." ||
+            num1.substring(num1.length - 2, num1.length - 1) === "."
+         ) {
+            disableFloatButton(false);
+         }
+         num1 = parseFloat(num1.slice(0, -1));
+        //  if num1 is empty
+         if (!num1) {
+            num1 = 0;
+         }
+         setDisplayValue(num1);
+      } else {
+         num2 = num2.toString();
+         if (
+            num2.slice(-1) === "." ||
+            num2.substring(num2.length - 2, num2.length - 1) === "."
+         ) {
+            disableFloatButton(false);
+         }
+         num2 = parseFloat(num2.slice(0, -1));
+         //  if num2 is empty
+         if (!num2) {
+            num1 = 0;
+         }
+         setDisplayValue(num2);
       }
    }
 };
@@ -92,7 +122,7 @@ const handleOperatorButtonPress = (op) => {
 let num1 = 0;
 let num2 = 0;
 let operator = null;
-let displayValue = "Welcome";
+let displayValue = 0;
 
 // GUI
 
@@ -184,4 +214,9 @@ divideButton.addEventListener("click", () => {
 const floatButton = document.querySelector("#float");
 floatButton.addEventListener("click", () => {
    handleSpecialButtons(".");
+});
+
+const backSpace = document.querySelector("#backSpace");
+backSpace.addEventListener("click", () => {
+   handleSpecialButtons("backSpace");
 });
