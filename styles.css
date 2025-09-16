@@ -6,8 +6,53 @@
 
 .buttonContainer {
    width: 220px;
+   background-color: bisque;
+   padding: 10px 5px;
+   border-radius: 4px;
+   margin: auto;   
 }
 
 .buttonContainer > div {
    display: flex;
+}
+
+button {
+   /* border: none; */
+   border-width: 1px;
+   border-radius: 5px;
+   background-color: #ffe797;
+   border-color: #ffe797;
+   font: bold;
+}
+
+#backSpace,
+#clear {
+   background-color: #b45253;
+   border-color: #b45253;
+}
+
+#equal {
+   background-color: #84994f;
+   border-color: #84994f;
+}
+
+#sum,
+#subtract,
+#float,
+#multiply,
+#divide {
+   background-color: #fcb53b;
+   border-color: #fcb53b;
+}
+
+#display {
+   background-color: gray;
+   margin: 4px;
+   border-radius: 4px;
+   padding: 10px 5px;
+}
+
+body {
+   font: bold;
+   color: white;
 }
