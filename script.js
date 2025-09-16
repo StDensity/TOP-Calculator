@@ -15,12 +15,9 @@ const divide = (num1, num2) => {
 };
 
 const operate = (a, b, operator) => {
-   console.log(a, b, operator);
    if (operator === "+") {
-      console.log("hi");
       num1 = add(a, b);
    } else if (operator === "-") {
-      console.log("subtraction", num1);
       num1 = subtract(a, b);
    } else if (operator === "*") {
       num1 = multiply(a, b);
@@ -31,37 +28,51 @@ const operate = (a, b, operator) => {
          num1 = divide(a, b);
       }
    }
+   num1 = Math.round(num1 * 100000) / 100000;
+
    setDisplayValue(num1);
-   //    operator === null;
    num2 = 0;
 };
 
-const handleSpecialButtons = (op) => {
-   if (op === "clear") {
+const disableFloatButton = (state) => {
+   floatButton.disabled = state;
+};
+
+const handleSpecialButtons = (button) => {
+   if (button === "clear") {
       num1 = 0;
       num2 = 0;
       operator = null;
+      disableFloatButton(false);
       setDisplayValue("Hello");
-   } else if (op === "=") {
+   } else if (button === "=") {
       operate(num1, num2, operator);
       operator = null;
+      disableFloatButton(false);
+   } else if (button === ".") {
+      if (operator === null) {
+         num1 = num1.toString() + ".";
+         setDisplayValue(num1);
+         disableFloatButton(true);
+      } else {
+         num2 = num2.toString() + ".";
+         setDisplayValue(num2);
+         disableFloatButton(true);
+      }
    }
 };
 
 const setDisplayValue = (str) => {
-   if (!isNaN(parseInt(str))) {
-      str = Math.round(str * 100000) / 100000;
-   }
    const displayArea = document.querySelector("#display");
    displayArea.textContent = str;
 };
 
 const handleNumberButtonPress = (num) => {
    if (operator === null) {
-      num1 = num1 * 10 + num;
+      num1 = parseFloat(num1.toString() + num);
       setDisplayValue(num1);
    } else {
-      num2 = num2 * 10 + num;
+      num2 = parseFloat(num2.toString() + num);
       setDisplayValue(num2);
    }
 };
@@ -75,9 +86,9 @@ const handleOperatorButtonPress = (op) => {
       operator = op;
       //   setDisplayValue(operator)
    }
+   disableFloatButton(false);
 };
 
-const OPERATORS = "+-*/";
 let num1 = 0;
 let num2 = 0;
 let operator = null;
@@ -165,7 +176,12 @@ multiplyButton.addEventListener("click", () => {
    handleOperatorButtonPress("*");
 });
 
-const DivideButton = document.querySelector("#divide");
-DivideButton.addEventListener("click", () => {
+const divideButton = document.querySelector("#divide");
+divideButton.addEventListener("click", () => {
    handleOperatorButtonPress("/");
+});
+
+const floatButton = document.querySelector("#float");
+floatButton.addEventListener("click", () => {
+   handleSpecialButtons(".");
 });
