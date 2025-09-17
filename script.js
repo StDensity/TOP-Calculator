@@ -69,7 +69,7 @@ const handleSpecialButtons = (button) => {
             disableFloatButton(false);
          }
          num1 = parseFloat(num1.slice(0, -1));
-        //  if num1 is empty
+         //  if num1 is empty
          if (!num1) {
             num1 = 0;
          }
@@ -128,6 +128,49 @@ let displayValue = 0;
 
 const displayArea = document.querySelector("#display");
 displayArea.textContent = displayValue;
+
+const body = document.querySelector("body");
+body.addEventListener("keydown", (e) => {
+   if (e.key == 1) {
+      handleNumberButtonPress(1);
+   } else if (e.key == 2) {
+      handleNumberButtonPress(2);
+   } else if (e.key == 3) {
+      handleNumberButtonPress(3);
+   } else if (e.key == 4) {
+      handleNumberButtonPress(4);
+   } else if (e.key == 5) {
+      handleNumberButtonPress(5);
+   } else if (e.key == 6) {
+      handleNumberButtonPress(6);
+   } else if (e.key == 7) {
+      handleNumberButtonPress(7);
+   } else if (e.key == 8) {
+      handleNumberButtonPress(8);
+   } else if (e.key == 9) {
+      handleNumberButtonPress(9);
+   } else if (e.key == 0) {
+      handleNumberButtonPress(0);
+   } else if (e.key == "+") {
+      handleOperatorButtonPress("+");
+   } else if (e.key == "-") {
+      handleOperatorButtonPress("-");
+   } else if (e.key == "*") {
+      handleOperatorButtonPress("*");
+   } else if (e.key == "/") {
+      handleOperatorButtonPress("/");
+   } else if (e.key == "c") {
+      handleSpecialButtons("clear");
+   } else if (e.key == "Backspace") {
+      handleSpecialButtons("backSpace");
+   } else if (e.key == "=") {
+      handleSpecialButtons("=");
+   } else if (e.key == "Enter") {
+      handleSpecialButtons("=");
+   } else if (e.key == ".") {
+      handleSpecialButtons(".");
+   }
+});
 
 // Buttons
 

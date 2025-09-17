@@ -9,7 +9,7 @@
    background-color: bisque;
    padding: 10px 5px;
    border-radius: 4px;
-   margin: auto;   
+   margin: auto;
 }
 
 .buttonContainer > div {
@@ -55,4 +55,13 @@ button {
 body {
    font: bold;
    color: white;
+}
+
+.footnote {
+   font: 100;
+   font-size: x-small;
+   font-style: italic;
+   padding: 4px;
+   padding-bottom: 0;
+   color: rgb(141, 133, 133);
 }
